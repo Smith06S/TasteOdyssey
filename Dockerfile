@@ -9,7 +9,7 @@ COPY .mvn ./taste-odyssey-api/.mvn
 COPY mvnw ./taste-odyssey-api/mvnw
 
 # Rendre le script mvnw exécutable et builder le jar
-RUN chmod +x mvnw
+RUN chmod +x taste-odyssey-api/mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Étape d'exécution

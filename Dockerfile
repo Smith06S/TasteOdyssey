@@ -4,9 +4,9 @@ WORKDIR /app
 
 # Copie des fichiers de configuration Maven et du code source
 COPY pom.xml .
-COPY src ./src
-COPY .mvn ./.mvn
-COPY mvnw ./mvnw
+COPY src ./taste-odyssey-api/src
+COPY .mvn ./taste-odyssey-api/.mvn
+COPY mvnw ./taste-odyssey-api/mvnw
 
 # Rendre le script mvnw exécutable et builder le jar
 RUN chmod +x mvnw

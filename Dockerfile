@@ -10,7 +10,7 @@ COPY taste-odyssey-api/mvnw ./taste-odyssey-api/mvnw
 
 # Rendre le script mvnw exécutable et builder le jar
 RUN chmod +x taste-odyssey-api/mvnw
-RUN ./mvnw clean package -DskipTests
+RUN ./taste-odyssey-api/mvnw clean package -DskipTests
 
 # Étape d'exécution
 FROM eclipse-temurin:21-jre-alpine

@@ -3,10 +3,10 @@ FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 
 # Copie des fichiers de configuration Maven et du code source
-COPY pom.xml .
-COPY src ./taste-odyssey-api/src
-COPY .mvn ./taste-odyssey-api/.mvn
-COPY mvnw ./taste-odyssey-api/mvnw
+COPY taste-odyssey-api/pom.xml .
+COPY taste-odyssey-api/src ./taste-odyssey-api/src
+COPY taste-odyssey-api/.mvn ./taste-odyssey-api/.mvn
+COPY taste-odyssey-api/mvnw ./taste-odyssey-api/mvnw
 
 # Rendre le script mvnw exécutable et builder le jar
 RUN chmod +x taste-odyssey-api/mvnw

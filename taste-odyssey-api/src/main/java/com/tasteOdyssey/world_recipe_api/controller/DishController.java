@@ -82,5 +82,4 @@ public class DishController {
     public void deleteDish(@PathVariable Long id) {
         dishService.deleteDish(id);
     }
-
 }

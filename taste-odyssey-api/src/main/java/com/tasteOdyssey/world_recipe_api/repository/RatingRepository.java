@@ -3,6 +3,7 @@ package com.tasteOdyssey.world_recipe_api.repository;
 import com.tasteOdyssey.world_recipe_api.entity.comment.Comment;
 import com.tasteOdyssey.world_recipe_api.entity.dish.Rating;
 import com.tasteOdyssey.world_recipe_api.entity.dish.tool.Tool;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -18,6 +19,13 @@ public interface RatingRepository extends JpaRepository<Rating, Long>, JpaSpecif
     Optional<Double> findAverageRatingByDishId(@Param("dishId") Long dishId);
 
     List<Rating> findByUserIdOrderByStarsDesc(Long userId);
+
+    @Query("SELECT r.dish.id FROM Rating r GROUP BY r.dish.id ORDER BY AVG(r.stars) DESC")
+    List<Long> findTop5DishIdsByAverageRating(Pageable pageable);
+
+    Optional<Rating> findFirstByDishIdOrderByStarsDesc(Long dishId);
+
+    Optional<Rating> findFirstByDishId(Long dishId);
 
     Optional<Rating> findByUserIdAndDishId(Long userId, Long dishId);
 

@@ -61,4 +61,9 @@ public class RatingController {
         return ResponseEntity.ok(ratingService.getUserRatings(userId, Optional.ofNullable(limit)));
     }
 
+    @GetMapping("/top5")
+    public ResponseEntity<List<RatingResponse>> getTop5() {
+        return ResponseEntity.ok(ratingService.getTop5Ratings());
+    }
+
 }

@@ -11,17 +11,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LikeDishResponse {
-    private LikeDishResponse.DishSummaryResponse dish;
+    private DishSummaryResponse dish;
 
     public static LikeDishResponse fromEntity(LikeDish likeDish) {
 
-        LikeDishResponse.DishSummaryResponse dishDTO = null;
+        DishSummaryResponse dishDTO = null;
         if (likeDish.getDish() != null) {
             String mainImage = (likeDish.getDish().getListImages() != null && !likeDish.getDish().getListImages().isEmpty())
                     ? likeDish.getDish().getListImages().getFirst()
                     : null;
 
-            dishDTO = LikeDishResponse.DishSummaryResponse.builder()
+            dishDTO = DishSummaryResponse.builder()
                     .id(likeDish.getDish().getId())
                     .dishName(likeDish.getDish().getDishName())
                     .slug(likeDish.getDish().getSlug())

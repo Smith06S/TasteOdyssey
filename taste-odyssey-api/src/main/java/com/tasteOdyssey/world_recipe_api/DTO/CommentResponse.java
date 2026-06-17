@@ -21,15 +21,15 @@ public class CommentResponse {
     private DishSummaryResponse dish;
 
     public static CommentResponse fromEntity(Comment comment) {
-        CommentResponse.UserSummaryResponse userDTO = null;
+        UserSummaryResponse userDTO = null;
         if (comment.getUser() != null) {
-            userDTO = CommentResponse.UserSummaryResponse.builder()
+            userDTO = UserSummaryResponse.builder()
                     .id(comment.getUser().getId())
                     .username(comment.getUser().getUsername())
                     .build();
         }
 
-        CommentResponse.DishSummaryResponse dishDTO = null;
+        DishSummaryResponse dishDTO = null;
         if (comment.getDish() != null) {
             dishDTO = DishSummaryResponse.builder()
                     .id(comment.getDish().getId())

@@ -15,25 +15,25 @@ public class RatingResponse {
 
     private Long id;
     private Integer stars;
-    private RatingResponse.UserSummaryResponse user;
-    private RatingResponse.DishSummaryResponse dish;
+    private UserSummaryResponse user;
+    private DishSummaryResponse dish;
 
     public static RatingResponse fromEntity(Rating rating) {
-        RatingResponse.UserSummaryResponse userDTO = null;
+        UserSummaryResponse userDTO = null;
         if (rating.getUser() != null) {
-            userDTO = RatingResponse.UserSummaryResponse.builder()
+            userDTO = UserSummaryResponse.builder()
                     .id(rating.getUser().getId())
                     .username(rating.getUser().getUsername())
                     .build();
         }
 
-        RatingResponse.DishSummaryResponse dishDTO = null;
+        DishSummaryResponse dishDTO = null;
         if (rating.getDish() != null) {
         String mainImage = (rating.getDish().getListImages() != null && !rating.getDish().getListImages().isEmpty())
                 ? rating.getDish().getListImages().getFirst()
                 : null;
 
-            dishDTO = RatingResponse.DishSummaryResponse.builder()
+            dishDTO = DishSummaryResponse.builder()
                     .id(rating.getDish().getId())
                     .dishName(rating.getDish().getDishName())
                     .slug(rating.getDish().getSlug())

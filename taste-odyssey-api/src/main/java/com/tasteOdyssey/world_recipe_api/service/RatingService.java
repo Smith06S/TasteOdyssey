@@ -10,6 +10,7 @@ import com.tasteOdyssey.world_recipe_api.entity.user.User;
 import com.tasteOdyssey.world_recipe_api.repository.DishRepository;
 import com.tasteOdyssey.world_recipe_api.repository.RatingRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -143,6 +144,17 @@ public class RatingService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
+    public List<RatingResponse> getTop5Ratings() {
+        List<Long> topDishIds = ratingRepository.findTop5DishIdsByAverageRating(PageRequest.of(0, 5));
+
+        return topDishIds.stream()
+                .map(dishId -> ratingRepository.findFirstByDishIdOrderByStarsDesc(dishId)
+                        .map(RatingResponse::fromEntity)
+                        .orElse(null))
+                .filter(java.util.Objects::nonNull)
+                .toList();
+    }
 
     public Integer getUserRatingForDish(Long dishId) {
         User currentUser = getCurrentAuthenticatedUser();
